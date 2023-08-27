@@ -7,9 +7,10 @@ Future<List<Provincia>> getProvincias() async {
       await http.get(Uri.parse('http://192.168.1.101:8000/api/provincia/'));
 
   if (response.statusCode == 200) {
-    List<Provincia> provincia = (json.decode(response.body) as List)
-        .map((data) => Provincia.fromJson(data))
-        .toList();
+    List<Provincia> provincia =
+        (json.decode(utf8.decode(response.bodyBytes)) as List)
+            .map((data) => Provincia.fromJson(data))
+            .toList();
     return provincia;
   } else {
     throw Exception('Failed to load provinces');
