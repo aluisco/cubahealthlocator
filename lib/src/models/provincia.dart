@@ -7,16 +7,12 @@ class Provincia {
     required this.nombre,
   });
 
-  Provincia fromJson(json) {
-    return Provincia(
-      id: json['id'],
-      nombre: json['nombre'],
-    );
-  }
+  factory Provincia.fromJson(Map<String, dynamic> json) => Provincia(
+        id: json['id'],
+        nombre: json['nombre'],
+      );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'nombre': nombre,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'nombre': nombre,
+      };
 }
