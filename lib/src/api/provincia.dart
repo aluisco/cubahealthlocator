@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:smcsalud/src/constants.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Provincia>> getProvincias() async {
-  final response =
-      await http.get(Uri.parse('http://192.168.1.101:8000/api/provincia/'));
+  final response = await http.get(Uri.parse('${site}provincia/'));
 
   if (response.statusCode == 200) {
     List<Provincia> provincia =

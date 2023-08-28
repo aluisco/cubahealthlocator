@@ -22,8 +22,11 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Servicios Médicos Cubanos'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Text(
+          'Inicio',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Center(
         child: FutureBuilder<List<Provincia>>(
