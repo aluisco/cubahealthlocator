@@ -69,7 +69,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
             body: DecoratedBox(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/img/peakpx.jpg'),
+                  image: AssetImage('assets/img/pbackground.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
