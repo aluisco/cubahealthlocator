@@ -4,7 +4,7 @@ import 'package:smcsalud/src/models/provincia.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Provincia>> getProvincias() async {
-  final response = await http.get(Uri.parse('${site}provincia/'));
+  final response = await http.get(Uri.parse('$site/api/provincia/'));
 
   if (response.statusCode == 200) {
     List<Provincia> provincia =
@@ -14,5 +14,15 @@ Future<List<Provincia>> getProvincias() async {
     return provincia;
   } else {
     throw Exception('Failed to load provinces');
+  }
+}
+
+Future<Provincia> getProvincia(int id) async {
+  final response = await http.get(Uri.parse('$site/api/provincia/$id/'));
+
+  if (response.statusCode == 200) {
+    return Provincia.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
+  } else {
+    throw Exception('Failed to load province');
   }
 }

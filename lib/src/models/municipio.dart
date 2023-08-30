@@ -1,26 +1,38 @@
+import 'dart:convert';
+
 class Municipio {
   int id;
   String nombre;
-  int idProvicia;
+  String descripcion;
+  String imagen;
+  int provincia;
 
   Municipio({
     required this.id,
     required this.nombre,
-    required this.idProvicia,
+    required this.descripcion,
+    required this.imagen,
+    required this.provincia,
   });
 
-  Municipio fromJson(json) {
-    return Municipio(
-      id: json['id'],
-      nombre: json['nombre'],
-      idProvicia: json['idProvincia'],
-    );
-  }
+  factory Municipio.fromRawJson(String str) =>
+      Municipio.fromJson(json.decode(str));
 
-  Map<String, dynamic> toJson() {
-    return {
-      'nombre': nombre,
-      'idProvicia': idProvicia,
-    };
-  }
+  String toRawJson() => json.encode(toJson());
+
+  factory Municipio.fromJson(Map<String, dynamic> json) => Municipio(
+        id: json["id"],
+        nombre: json["nombre"],
+        descripcion: json["descripcion"],
+        imagen: json["imagen"],
+        provincia: json["provincia"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nombre": nombre,
+        "descripcion": descripcion,
+        "imagen": imagen,
+        "provincia": provincia,
+      };
 }

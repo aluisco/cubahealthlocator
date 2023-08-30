@@ -1,46 +1,42 @@
 import 'dart:convert';
 
-class Institucion {
+class Imagenes {
   int id;
   String nombre;
-  String direccion;
   String descripcion;
+  String photo;
   bool disponible;
-  int provincia;
-  int municipio;
+  int institucion;
 
-  Institucion({
+  Imagenes({
     required this.id,
     required this.nombre,
-    required this.direccion,
     required this.descripcion,
+    required this.photo,
     required this.disponible,
-    required this.provincia,
-    required this.municipio,
+    required this.institucion,
   });
 
-  factory Institucion.fromRawJson(String str) =>
-      Institucion.fromJson(json.decode(str));
+  factory Imagenes.fromRawJson(String str) =>
+      Imagenes.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Institucion.fromJson(Map<String, dynamic> json) => Institucion(
+  factory Imagenes.fromJson(Map<String, dynamic> json) => Imagenes(
         id: json["id"],
         nombre: json["nombre"],
-        direccion: json["direccion"],
         descripcion: json["descripcion"],
+        photo: json["photo"],
         disponible: json["disponible"],
-        provincia: json["provincia"],
-        municipio: json["municipio"],
+        institucion: json["institucion"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "nombre": nombre,
-        "direccion": direccion,
         "descripcion": descripcion,
+        "photo": photo,
         "disponible": disponible,
-        "provincia": provincia,
-        "municipio": municipio,
+        "institucion": institucion,
       };
 }

@@ -13,10 +13,44 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Servicios Médicos Cubanos',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+      title: 'Inicio',
+      themeMode: ThemeMode.light,
+      theme: ThemeData.light(
         useMaterial3: true,
+      ).copyWith(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
+        scaffoldBackgroundColor: Colors.grey[100],
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 12,
+            color: Colors.white,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 14,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      darkTheme: ThemeData.dark(
+        useMaterial3: true,
+      ).copyWith(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        scaffoldBackgroundColor: Colors.grey[100],
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 16,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 12,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 14,
+          ),
+        ),
       ),
       home: const Dashboard(),
     );
