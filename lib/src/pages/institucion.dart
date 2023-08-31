@@ -227,21 +227,24 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       context: context,
                                     );
                                   },
-                                  child: ListView(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(25)),
-                                        child: Image.network(
-                                          '$site${imagenes[itemIndex].photo}',
-                                          fit: BoxFit.cover,
-                                          height: 205,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ListView(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(25)),
+                                          child: Image.network(
+                                            '$site${imagenes[itemIndex].photo}',
+                                            fit: BoxFit.cover,
+                                            height: 205,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
