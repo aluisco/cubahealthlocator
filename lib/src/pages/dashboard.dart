@@ -99,7 +99,7 @@ class _DashboardState extends State<Dashboard> {
                         child: FutureBuilder<List<Provincia>>(
                           future: listProvincias,
                           builder: (context, snapshot) {
-                            if (snapshot.hasData) {
+                            if (snapshot.hasData && snapshot.data != null) {
                               return CarouselSlider.builder(
                                 options: CarouselOptions(
                                   aspectRatio: 1.5,

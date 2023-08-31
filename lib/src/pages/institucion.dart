@@ -205,9 +205,6 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                             child: ElevatedButton(
                                               onPressed: () =>
                                                   Navigator.of(context).pop(),
-                                              style: ElevatedButton.styleFrom(
-                                                shape: const StadiumBorder(),
-                                              ),
                                               child: const Text('OK'),
                                             ),
                                           ),
@@ -233,7 +230,8 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       children: [
                                         ClipRRect(
                                           borderRadius: const BorderRadius.all(
-                                              Radius.circular(25)),
+                                            Radius.circular(25),
+                                          ),
                                           child: Image.network(
                                             '$site${imagenes[itemIndex].photo}',
                                             fit: BoxFit.cover,
