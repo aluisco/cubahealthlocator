@@ -41,6 +41,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
               .toList();
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               backgroundColor: Theme.of(context).colorScheme.primary,
               title: Text(
                 municipio.nombre,
@@ -138,6 +139,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                 autoPlay: false,
                                 enlargeFactor: 0.3,
                                 scrollDirection: Axis.horizontal,
+                                enableInfiniteScroll: false,
                               ),
                               itemCount: instituciones.length,
                               itemBuilder: (BuildContext context, int itemIndex,
@@ -179,7 +181,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                         Text(
                                           instituciones[itemIndex].nombre,
                                           style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 16,
                                             color: Colors.black,
                                           ),
                                           textAlign: TextAlign.center,

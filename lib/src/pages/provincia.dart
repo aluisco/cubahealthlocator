@@ -41,6 +41,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
               .toList();
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               backgroundColor: Theme.of(context).colorScheme.primary,
               title: Text(
                 provincia.nombre,
@@ -139,6 +140,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                 autoPlay: false,
                                 enlargeFactor: 0.3,
                                 scrollDirection: Axis.horizontal,
+                                enableInfiniteScroll: false,
                               ),
                               itemCount: municipios.length,
                               itemBuilder: (BuildContext context, int itemIndex,

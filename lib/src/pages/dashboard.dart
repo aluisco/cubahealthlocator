@@ -26,6 +26,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text(
           'Inicio',
@@ -76,7 +77,19 @@ class _DashboardState extends State<Dashboard> {
                                 color: Colors.black,
                               ),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
                             const Divider(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Text(
+                              'Escoja la Provincia a Visitar:',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
                           ],
                         ),
                       ),
