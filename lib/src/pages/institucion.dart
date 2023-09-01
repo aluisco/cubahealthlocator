@@ -112,6 +112,15 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                     height: 6,
                                   ),
                                   Text(
+                                    institucion.direccion,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
                                     institucion.descripcion,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -254,6 +263,65 @@ class _InstitucionPageState extends State<InstitucionPage> {
                   ),
                 ),
               ],
+            ),
+            floatingActionButton: FloatingActionButton.extended(
+              backgroundColor: Colors.indigo,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
+                      contentPadding: const EdgeInsets.only(top: 10.0),
+                      backgroundColor: Colors.indigo,
+                      title: const Text(
+                        'Información',
+                      ),
+                      content: const SizedBox(
+                        width: 300.0,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.all(25),
+                              child: Column(
+                                children: [],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder(),
+                            ),
+                            child: const Text('OK'),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              tooltip: 'Geolocalización',
+              icon: const Icon(
+                Icons.location_on,
+                color: Colors.white,
+              ),
+              label: Text(
+                '${institucion.plusCode} ',
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
           );
         } else if (snapshot.hasError) {
