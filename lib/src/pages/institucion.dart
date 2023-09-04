@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'dart:io' show Platform;
-import 'package:android_intent/android_intent.dart';
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/imagenes_provider.dart';
