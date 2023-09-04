@@ -47,5 +47,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	 <string>googlechromes</string>
+	 <string>comgooglemaps</string>
+	 <string>iosamap</string>
+	</array>	
 </dict>
 </plist>

@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'dart:io' show Platform;
+import 'package:android_intent/android_intent.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/imagenes_provider.dart';
@@ -6,6 +8,7 @@ import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class InstitucionPage extends StatefulWidget {
   const InstitucionPage(this.iid, {super.key});
@@ -266,50 +269,25 @@ class _InstitucionPageState extends State<InstitucionPage> {
             ),
             floatingActionButton: FloatingActionButton.extended(
               backgroundColor: Colors.indigo,
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
-                      contentPadding: const EdgeInsets.only(top: 10.0),
-                      backgroundColor: Colors.indigo,
-                      title: const Text(
-                        'Información',
-                      ),
-                      content: const SizedBox(
-                        width: 300.0,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(25),
-                              child: Column(
-                                children: [],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: ElevatedButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(),
-                            ),
-                            child: const Text('OK'),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
+              onPressed: () async {
+                String destination =
+                    Uri.encodeComponent('${institucion.direccion}');
+                if (Platform.isAndroid) {
+                  final AndroidIntent intent = AndroidIntent(
+                      action: 'action_view',
+                      data:
+                          "https://www.google.com/maps/search/?api=1&query=$destination",
+                      package: 'com.google.android.apps.maps');
+                  intent.launch();
+                } else if (Platform.isIOS) {
+                  String urlAppleMaps =
+                      'http://maps.apple.com/?daddr=$destination&dirflg=d&t=h';
+                  if (await canLaunchUrlString(urlAppleMaps)) {
+                    await launchUrlString(urlAppleMaps);
+                  } else {
+                    throw 'Could not launch $urlAppleMaps';
+                  }
+                }
               },
               tooltip: 'Geolocalización',
               icon: const Icon(
@@ -317,9 +295,10 @@ class _InstitucionPageState extends State<InstitucionPage> {
                 color: Colors.white,
               ),
               label: Text(
-                '${institucion.plusCode} ',
+                institucion.direccion,
                 style: const TextStyle(
                   color: Colors.white,
+                  fontSize: 10,
                 ),
               ),
             ),
