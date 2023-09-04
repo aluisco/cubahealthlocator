@@ -1,3 +1,8 @@
 {
-    "helloWorld": "¡Hola Mundo!"
+  "dashboardTitle": "Inicio",
+  "dashboardMessage": "Visite todos nuestros sitios ubicados en todo nuestro territorio nacional, puede realizar un recorrido por todas nuestras provincias y conocer cada detalle y ubicación que corresponde con servicios ubicados especificamente para ayudarlo a tener una mejor estancia en nuestro país.",
+  "provinceVisit": "Escoja la Provincia a Visitar:",
+  "info": "Información",
+  "infoMessage": "Aplicación diseñada para proporcionar información sobre los diferentes lugares que tiene Servicios Médicos Cubanos en el País.\n\nSi desea ponerse en contacto con el desarrollador por favor escriba al correo admin@smcsalud.cu",
+  "version": "Versión: "
 }

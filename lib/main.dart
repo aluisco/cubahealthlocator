@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/pages/dashboard.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Inicio',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
       themeMode: ThemeMode.light,
       theme: ThemeData.light(
         useMaterial3: true,
@@ -42,7 +40,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ).copyWith(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        scaffoldBackgroundColor: Colors.grey[100],
+        scaffoldBackgroundColor: Colors.transparent,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
             fontSize: 16,
@@ -55,6 +53,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      localizationsDelegates: const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
       home: const Dashboard(),
     );
   }

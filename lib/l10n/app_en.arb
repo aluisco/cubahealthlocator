@@ -1,6 +1,26 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
+  "dashboardTitle": "Home",
+  "@dashboardTitle": {
+    "description": "The title of the dasboard"
+  },
+  "dashboardMessage": "Visit all our sites located throughout our national territory, you can take a tour of all our provinces and know every detail and location that corresponds to services located specifically to help you have a better stay in our country.",
+  "@dashboardMessage": {
+    "description": "The principal Message when open the app"
+  },
+  "provinceVisit": "Choose the Province to Visit:",
+  "@provinceVisit": {
+    "description": "Chose the province to visit"
+  },
+  "info": "Info",
+  "@info": {
+    "description": "Info"
+  },
+  "infoMessage": "Application designed to provide information on the different places that Cuban Medical Services have in the Country.\n\nIf you want to contact the developer please write to admin@smcsalud.cu",
+  "@infoMessage": {
+    "description": "Message for info button"
+  },
+  "version": "Version: ",
+  "@version": {
+    "description": "Version"
   }
 }

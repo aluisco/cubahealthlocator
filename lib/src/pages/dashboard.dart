@@ -5,6 +5,7 @@ import 'package:smcsalud/src/constants.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -28,9 +29,9 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text(
-          'Inicio',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          AppLocalizations.of(context)!.dashboardTitle,
+          style: const TextStyle(color: Colors.white),
         ),
       ),
       body: Stack(
@@ -71,9 +72,9 @@ class _DashboardState extends State<Dashboard> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            const Text(
-                              'Visite todos nuestros sitios ubicados en todo nuestro territorio nacional, puede realizar un recorrido por todas nuestras provincias y conocer cada detalle y ubicación que corresponde con servicios ubicados especificamente para ayudarlo a tener una mejor estancia en nuestro país. ',
-                              style: TextStyle(
+                            Text(
+                              AppLocalizations.of(context)!.dashboardMessage,
+                              style: const TextStyle(
                                 color: Colors.black,
                               ),
                             ),
@@ -84,9 +85,9 @@ class _DashboardState extends State<Dashboard> {
                             const SizedBox(
                               height: 15,
                             ),
-                            const Text(
-                              'Escoja la Provincia a Visitar:',
-                              style: TextStyle(
+                            Text(
+                              AppLocalizations.of(context)!.provinceVisit,
+                              style: const TextStyle(
                                 color: Colors.black,
                               ),
                             ),
@@ -202,13 +203,16 @@ class _DashboardState extends State<Dashboard> {
             builder: (BuildContext context) {
               return AlertDialog(
                 shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
+                  ),
+                ),
                 contentPadding: const EdgeInsets.only(top: 10.0),
                 backgroundColor: Colors.indigo,
-                title: const Text(
-                  'Información',
+                title: Text(
+                  AppLocalizations.of(context)!.info,
                 ),
-                content: const SizedBox(
+                content: SizedBox(
                   width: 300.0,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -216,26 +220,21 @@ class _DashboardState extends State<Dashboard> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(25),
+                        padding: const EdgeInsets.all(25),
                         child: Column(
                           children: [
-                            Text(
-                                'Aplicación diseñada para proporcionar información sobre los diferentes lugares que Ofrece la Comercializadora a Nivel Nacional.'),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                                'Si desea ponerse en contacto con el desarrollador por favor escriba al correo admin@smcsalud.cu'),
-                            SizedBox(
+                            Text(AppLocalizations.of(context)!.infoMessage),
+                            const SizedBox(
                               height: 16,
                             ),
                             Align(
                               alignment: Alignment.bottomRight,
                               child: Text.rich(
                                 TextSpan(
-                                  text: 'Versión: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                  children: [
+                                  text: AppLocalizations.of(context)!.version,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                  children: const [
                                     TextSpan(
                                       text: '0.1 Beta',
                                       style: TextStyle(
@@ -270,7 +269,7 @@ class _DashboardState extends State<Dashboard> {
             },
           );
         },
-        tooltip: 'Información de la aplicación.',
+        tooltip: AppLocalizations.of(context)!.info,
         child: const Icon(
           Icons.info,
           color: Colors.white,
