@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:smcsalud/src/constants.dart';
+import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:http/http.dart' as http;
 

@@ -5,7 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/imagenes_provider.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
-import 'package:smcsalud/src/constants.dart';
+import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:url_launcher/url_launcher_string.dart';

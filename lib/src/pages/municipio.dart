@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/api/municipio_provider.dart';
-import 'package:smcsalud/src/constants.dart';
+import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/pages/institucion.dart';
