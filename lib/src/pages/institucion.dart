@@ -289,16 +289,14 @@ class _InstitucionPageState extends State<InstitucionPage> {
                   }
                 }
               },
-              tooltip: 'Geolocalización',
               icon: const Icon(
                 Icons.location_on,
                 color: Colors.white,
               ),
-              label: Text(
-                institucion.direccion,
-                style: const TextStyle(
+              label: const Text(
+                'Location',
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
                 ),
               ),
             ),
