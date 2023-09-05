@@ -223,7 +223,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.indigo,
         onPressed: () {
           showDialog(
@@ -248,7 +248,11 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(25),
+                        padding: const EdgeInsets.only(
+                          right: 25,
+                          left: 25,
+                          bottom: 15,
+                        ),
                         child: Column(
                           children: [
                             Text(AppLocalizations.of(context)!.infoMessage),
@@ -297,8 +301,12 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             },
           );
         },
+        label: Text(
+          AppLocalizations.of(context)!.info,
+          style: const TextStyle(color: Colors.white),
+        ),
         tooltip: AppLocalizations.of(context)!.info,
-        child: const Icon(
+        icon: const Icon(
           Icons.info,
           color: Colors.white,
         ),

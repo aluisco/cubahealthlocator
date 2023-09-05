@@ -7,6 +7,7 @@ import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/pages/institucion.dart';
+import 'package:smcsalud/src/utils/search.dart';
 
 class MunicipioPage extends StatefulWidget {
   const MunicipioPage(this.mid, {super.key});
@@ -67,7 +68,12 @@ class _MunicipioPageState extends State<MunicipioPage> {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchInstitucion(snapshot.data![1]),
+                    );
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.white,

@@ -8,7 +8,9 @@ import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
+import 'package:smcsalud/src/utils/search.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InstitucionPage extends StatefulWidget {
   const InstitucionPage(this.iid, {super.key});
@@ -21,10 +23,12 @@ class InstitucionPage extends StatefulWidget {
 class _InstitucionPageState extends State<InstitucionPage> {
   late Future<Institucion> institucionFuture;
   late Future<List<Imagenes>> listImagenesFuture;
+  late Future<List<Institucion>> listInstitucionFuture;
 
   @override
   void initState() {
     institucionFuture = getInstitucion(widget.iid);
+    listInstitucionFuture = getInstituciones();
     listImagenesFuture = getImagenes();
     super.initState();
   }
@@ -33,7 +37,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait(
-        [institucionFuture, listImagenesFuture],
+        [institucionFuture, listImagenesFuture, listInstitucionFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         final Locale locale = Localizations.localeOf(context);
@@ -42,6 +46,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
           final imagenes = snapshot.data![1]
               .where((propiedad) => propiedad.institucion == widget.iid)
               .toList();
+          final instituciones = snapshot.data![2];
           final String institucionDescrip;
           if (locale.languageCode == 'es') {
             institucionDescrip = institucion.descripcionEs;
@@ -69,7 +74,12 @@ class _InstitucionPageState extends State<InstitucionPage> {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchInstitucion(instituciones),
+                    );
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.white,
@@ -308,9 +318,9 @@ class _InstitucionPageState extends State<InstitucionPage> {
                 Icons.location_on,
                 color: Colors.white,
               ),
-              label: const Text(
-                'Location',
-                style: TextStyle(
+              label: Text(
+                AppLocalizations.of(context)!.location,
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),

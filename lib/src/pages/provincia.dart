@@ -1,12 +1,15 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/api/municipio_provider.dart';
 import 'package:smcsalud/src/api/provincia_provider.dart';
+import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/municipio.dart';
+import 'package:smcsalud/src/utils/search.dart';
 
 class ProvinciaPage extends StatefulWidget {
   const ProvinciaPage(this.pid, {super.key});
@@ -19,11 +22,13 @@ class ProvinciaPage extends StatefulWidget {
 class _ProvinciaPageState extends State<ProvinciaPage> {
   late Future<Provincia> provinciaFuture;
   late Future<List<Municipio>> listMunicipioFuture;
+  late Future<List<Institucion>> listInstitucionFuture;
 
   @override
   void initState() {
     provinciaFuture = getProvincia(widget.pid);
     listMunicipioFuture = getMunicipios();
+    listInstitucionFuture = getInstituciones();
     super.initState();
   }
 
@@ -31,7 +36,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait(
-        [provinciaFuture, listMunicipioFuture],
+        [provinciaFuture, listMunicipioFuture, listInstitucionFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         final Locale locale = Localizations.localeOf(context);
@@ -40,6 +45,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
           final municipios = snapshot.data![1]
               .where((propiedad) => propiedad.provincia == widget.pid)
               .toList();
+          final instituciones = snapshot.data![2];
           final String provinciaDescrip;
           if (locale.languageCode == 'es') {
             provinciaDescrip = provincia.descripcionEs;
@@ -67,7 +73,12 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: SearchInstitucion(instituciones),
+                    );
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.white,
