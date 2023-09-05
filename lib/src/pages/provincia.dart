@@ -10,6 +10,7 @@ import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/municipio.dart';
 import 'package:smcsalud/src/utils/search.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProvinciaPage extends StatefulWidget {
   const ProvinciaPage(this.pid, {super.key});
@@ -76,7 +77,8 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                   onPressed: () {
                     showSearch(
                       context: context,
-                      delegate: SearchInstitucion(instituciones),
+                      delegate: SearchInstitucion(instituciones,
+                          AppLocalizations.of(context)!.searchinst),
                     );
                   },
                   icon: const Icon(

@@ -77,7 +77,8 @@ class _InstitucionPageState extends State<InstitucionPage> {
                   onPressed: () {
                     showSearch(
                       context: context,
-                      delegate: SearchInstitucion(instituciones),
+                      delegate: SearchInstitucion(instituciones,
+                          AppLocalizations.of(context)!.searchinst),
                     );
                   },
                   icon: const Icon(

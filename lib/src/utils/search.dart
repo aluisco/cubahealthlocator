@@ -6,11 +6,12 @@ import 'package:smcsalud/src/utils/results.dart';
 class SearchInstitucion extends SearchDelegate<Institucion> {
   List<Institucion> _filter = [];
   final List<Institucion> instituciones;
+  final String? hintText;
 
-  SearchInstitucion(this.instituciones);
+  SearchInstitucion(this.instituciones, this.hintText);
 
   @override
-  String get searchFieldLabel => 'Buscar Instituciones...';
+  String? get searchFieldLabel => hintText;
 
   @override
   ThemeData appBarTheme(BuildContext context) {

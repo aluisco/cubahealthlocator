@@ -26,5 +26,17 @@
   "location": "Location",
   "@location": {
     "description": "Location"
-  }
+  },
+  "address": "Address: ",
+  "@address": {
+    "description": "Address of Institution"
+  },
+  "no": "No",
+  "yes": "Yes",
+  "goback": "Go Back",
+  "seedetails": "See Details",
+  "reallyexit": "Do yo really want to exit the App?",
+  "exit": "Exit",
+  "resultsnotfound": "No results found!",
+  "searchinst": "Search Institutions..."
 }

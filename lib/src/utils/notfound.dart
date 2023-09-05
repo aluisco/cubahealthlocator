@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotFound extends StatelessWidget {
   const NotFound({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
+    return SizedBox.expand(
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
+            const Icon(
               Icons.warning,
               size: 40,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text('No se encontraron resultados!'),
+            Text(AppLocalizations.of(context)!.resultsnotfound),
           ],
         ),
       ),
