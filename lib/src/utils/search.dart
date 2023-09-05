@@ -23,8 +23,11 @@ class SearchInstitucion extends SearchDelegate<Institucion> {
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           color: Colors.white,
-          fontSize: 18.0,
         ),
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: Colors.white,
+        selectionColor: Colors.blueAccent,
       ),
     );
   }
