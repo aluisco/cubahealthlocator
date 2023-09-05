@@ -70,7 +70,7 @@ class Results extends StatelessWidget {
                                     '$site${_filter[index].imagen}'),
                               ),
                               const SizedBox(
-                                height: 5,
+                                height: 10,
                               ),
                               Text(
                                 AppLocalizations.of(context)!.address +

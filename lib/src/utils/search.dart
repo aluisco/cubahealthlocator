@@ -28,6 +28,7 @@ class SearchInstitucion extends SearchDelegate<Institucion> {
       textSelectionTheme: const TextSelectionThemeData(
         cursorColor: Colors.white,
         selectionColor: Colors.blueAccent,
+        selectionHandleColor: Colors.blueAccent,
       ),
     );
   }

@@ -133,7 +133,8 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                     height: 6,
                                   ),
                                   Text(
-                                    institucion.direccion,
+                                    AppLocalizations.of(context)!.address +
+                                        institucion.direccion,
                                     style: const TextStyle(
                                       color: Colors.black,
                                     ),
