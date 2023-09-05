@@ -34,11 +34,18 @@ class _MunicipioPageState extends State<MunicipioPage> {
         [municipioFuture, listInstitucionFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        final Locale locale = Localizations.localeOf(context);
         if (snapshot.hasData && snapshot.data != null) {
           final municipio = snapshot.data![0];
           final instituciones = snapshot.data![1]
               .where((propiedad) => propiedad.municipio == widget.mid)
               .toList();
+          final String municipioDescrip;
+          if (locale.languageCode == 'es') {
+            municipioDescrip = municipio.descripcionEs;
+          } else {
+            municipioDescrip = municipio.descripcionEn;
+          }
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -112,7 +119,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                     height: 6,
                                   ),
                                   Text(
-                                    municipio.descripcion,
+                                    municipioDescrip,
                                     style: const TextStyle(
                                       color: Colors.black,
                                     ),
@@ -156,37 +163,42 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                       ),
                                     );
                                   },
-                                  child: Card(
-                                    shadowColor: Colors.greenAccent,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(25)),
-                                    ),
-                                    child: ListView(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(25),
-                                            topRight: Radius.circular(25),
+                                  child: SizedBox(
+                                    width: 300.0,
+                                    height: 300.0,
+                                    child: Card(
+                                      shadowColor: Colors.greenAccent,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(25)),
+                                      ),
+                                      child: ListView(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(25),
+                                              topRight: Radius.circular(25),
+                                            ),
+                                            child: Image.network(
+                                              '$site${instituciones[itemIndex].imagen}',
+                                              fit: BoxFit.cover,
+                                              height: 205,
+                                            ),
                                           ),
-                                          child: Image.network(
-                                            '$site${instituciones[itemIndex].imagen}',
-                                            fit: BoxFit.cover,
-                                            height: 205,
+                                          const SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          instituciones[itemIndex].nombre,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black,
+                                          Text(
+                                            instituciones[itemIndex].nombre,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black,
+                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

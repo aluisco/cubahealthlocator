@@ -3,7 +3,8 @@ import 'dart:convert';
 class Imagenes {
   int id;
   String nombre;
-  String descripcion;
+  String descripcionEs;
+  String descripcionEn;
   String photo;
   bool disponible;
   int institucion;
@@ -11,7 +12,8 @@ class Imagenes {
   Imagenes({
     required this.id,
     required this.nombre,
-    required this.descripcion,
+    required this.descripcionEs,
+    required this.descripcionEn,
     required this.photo,
     required this.disponible,
     required this.institucion,
@@ -25,7 +27,8 @@ class Imagenes {
   factory Imagenes.fromJson(Map<String, dynamic> json) => Imagenes(
         id: json["id"],
         nombre: json["nombre"],
-        descripcion: json["descripcion"],
+        descripcionEs: json["descripcion_es"],
+        descripcionEn: json["descripcion_en"],
         photo: json["photo"],
         disponible: json["disponible"],
         institucion: json["institucion"],
@@ -34,7 +37,8 @@ class Imagenes {
   Map<String, dynamic> toJson() => {
         "id": id,
         "nombre": nombre,
-        "descripcion": descripcion,
+        "descripcion_es": descripcionEs,
+        "descripcion_en": descripcionEn,
         "photo": photo,
         "disponible": disponible,
         "institucion": institucion,

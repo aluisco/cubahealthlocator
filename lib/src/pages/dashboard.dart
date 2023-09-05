@@ -14,13 +14,37 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   late Future<List<Provincia>> listProvincias;
 
+  Locale? _locale;
   @override
   void initState() {
     listProvincias = getProvincias();
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setLocale(context));
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeLocales(List<Locale>? locales) {
+    super.didChangeLocales(locales);
+    setState(() {
+      _locale = locales?.first ?? _locale;
+    });
+  }
+
+  setLocale(BuildContext context) {
+    final Locale locale = Localizations.localeOf(context);
+    setState(() {
+      _locale = locale;
+    });
   }
 
   @override
@@ -127,38 +151,42 @@ class _DashboardState extends State<Dashboard> {
                                         ),
                                       );
                                     },
-                                    child: Card(
-                                      shadowColor: Colors.greenAccent,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(25)),
-                                      ),
-                                      child: ListView(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(25),
-                                              topRight: Radius.circular(25),
+                                    child: SizedBox(
+                                      width: 300.0,
+                                      height: 300.0,
+                                      child: Card(
+                                        shadowColor: Colors.greenAccent,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(25)),
+                                        ),
+                                        child: ListView(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(25),
+                                                topRight: Radius.circular(25),
+                                              ),
+                                              child: Image.network(
+                                                '$site${snapshot.data![itemIndex].imagen}',
+                                                fit: BoxFit.cover,
+                                                height: 205,
+                                              ),
                                             ),
-                                            child: Image.network(
-                                              '$site${snapshot.data![itemIndex].imagen}',
-                                              fit: BoxFit.cover,
-                                              height: 205,
+                                            const SizedBox(
+                                              height: 10,
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            snapshot.data![itemIndex].nombre,
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.black,
+                                            Text(
+                                              snapshot.data![itemIndex].nombre,
+                                              style: const TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                              ),
+                                              textAlign: TextAlign.center,
                                             ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );

@@ -34,11 +34,18 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
         [provinciaFuture, listMunicipioFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        final Locale locale = Localizations.localeOf(context);
         if (snapshot.hasData && snapshot.data != null) {
           final provincia = snapshot.data![0];
           final municipios = snapshot.data![1]
               .where((propiedad) => propiedad.provincia == widget.pid)
               .toList();
+          final String provinciaDescrip;
+          if (locale.languageCode == 'es') {
+            provinciaDescrip = provincia.descripcionEs;
+          } else {
+            provinciaDescrip = provincia.descripcionEn;
+          }
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -113,7 +120,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                     height: 6,
                                   ),
                                   Text(
-                                    provincia.descripcion,
+                                    provinciaDescrip,
                                     style: const TextStyle(
                                       color: Colors.black,
                                     ),
@@ -157,37 +164,42 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                       ),
                                     );
                                   },
-                                  child: Card(
-                                    shadowColor: Colors.greenAccent,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(25)),
-                                    ),
-                                    child: ListView(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(25),
-                                            topRight: Radius.circular(25),
+                                  child: SizedBox(
+                                    width: 300.0,
+                                    height: 300.0,
+                                    child: Card(
+                                      shadowColor: Colors.greenAccent,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(25)),
+                                      ),
+                                      child: ListView(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(25),
+                                              topRight: Radius.circular(25),
+                                            ),
+                                            child: Image.network(
+                                              '$site${municipios[itemIndex].imagen}',
+                                              fit: BoxFit.cover,
+                                              height: 205,
+                                            ),
                                           ),
-                                          child: Image.network(
-                                            '$site${municipios[itemIndex].imagen}',
-                                            fit: BoxFit.cover,
-                                            height: 205,
+                                          const SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          municipios[itemIndex].nombre,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black,
+                                          Text(
+                                            municipios[itemIndex].nombre,
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black,
+                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

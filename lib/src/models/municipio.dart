@@ -3,14 +3,16 @@ import 'dart:convert';
 class Municipio {
   int id;
   String nombre;
-  String descripcion;
+  String descripcionEs;
+  String descripcionEn;
   String imagen;
   int provincia;
 
   Municipio({
     required this.id,
     required this.nombre,
-    required this.descripcion,
+    required this.descripcionEs,
+    required this.descripcionEn,
     required this.imagen,
     required this.provincia,
   });
@@ -23,7 +25,8 @@ class Municipio {
   factory Municipio.fromJson(Map<String, dynamic> json) => Municipio(
         id: json["id"],
         nombre: json["nombre"],
-        descripcion: json["descripcion"],
+        descripcionEs: json["descripcion_es"],
+        descripcionEn: json["descripcion_en"],
         imagen: json["imagen"],
         provincia: json["provincia"],
       );
@@ -31,7 +34,8 @@ class Municipio {
   Map<String, dynamic> toJson() => {
         "id": id,
         "nombre": nombre,
-        "descripcion": descripcion,
+        "descripcion_es": descripcionEs,
+        "descripcion_en": descripcionEn,
         "imagen": imagen,
         "provincia": provincia,
       };

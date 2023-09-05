@@ -36,11 +36,18 @@ class _InstitucionPageState extends State<InstitucionPage> {
         [institucionFuture, listImagenesFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        final Locale locale = Localizations.localeOf(context);
         if (snapshot.hasData && snapshot.data != null) {
           final institucion = snapshot.data![0];
           final imagenes = snapshot.data![1]
               .where((propiedad) => propiedad.institucion == widget.iid)
               .toList();
+          final String institucionDescrip;
+          if (locale.languageCode == 'es') {
+            institucionDescrip = institucion.descripcionEs;
+          } else {
+            institucionDescrip = institucion.descripcionEn;
+          }
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -124,7 +131,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                     height: 3,
                                   ),
                                   Text(
-                                    institucion.descripcion,
+                                    institucionDescrip,
                                     style: const TextStyle(
                                       color: Colors.black,
                                     ),
@@ -200,10 +207,18 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                                     const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    Text(
-                                                      imagenes[itemIndex]
-                                                          .descripcion,
-                                                    ),
+                                                    if (locale.languageCode ==
+                                                        'es')
+                                                      Text(
+                                                        imagenes[itemIndex]
+                                                            .descripcionEs,
+                                                      ),
+                                                    if (locale.languageCode ==
+                                                        'en')
+                                                      Text(
+                                                        imagenes[itemIndex]
+                                                            .descripcionEn,
+                                                      ),
                                                   ],
                                                 ),
                                               ),

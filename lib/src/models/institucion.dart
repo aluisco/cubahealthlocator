@@ -4,7 +4,8 @@ class Institucion {
   int id;
   String nombre;
   String direccion;
-  String descripcion;
+  String descripcionEs;
+  String descripcionEn;
   String imagen;
   bool disponible;
   int provincia;
@@ -14,7 +15,8 @@ class Institucion {
     required this.id,
     required this.nombre,
     required this.direccion,
-    required this.descripcion,
+    required this.descripcionEs,
+    required this.descripcionEn,
     required this.imagen,
     required this.disponible,
     required this.provincia,
@@ -30,7 +32,8 @@ class Institucion {
         id: json["id"],
         nombre: json["nombre"],
         direccion: json["direccion"],
-        descripcion: json["descripcion"],
+        descripcionEs: json["descripcion_es"],
+        descripcionEn: json["descripcion_en"],
         imagen: json["imagen"],
         disponible: json["disponible"],
         provincia: json["provincia"],
@@ -41,7 +44,8 @@ class Institucion {
         "id": id,
         "nombre": nombre,
         "direccion": direccion,
-        "descripcion": descripcion,
+        "descripcion_es": descripcionEs,
+        "descripcion_en": descripcionEn,
         "imagen": imagen,
         "disponible": disponible,
         "provincia": provincia,
