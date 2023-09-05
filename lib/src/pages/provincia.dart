@@ -9,6 +9,7 @@ import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/municipio.dart';
+import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -230,7 +231,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const Loading();
       },
     );
   }

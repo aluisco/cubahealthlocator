@@ -7,6 +7,7 @@ import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/pages/institucion.dart';
+import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -224,7 +225,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const Loading();
       },
     );
   }

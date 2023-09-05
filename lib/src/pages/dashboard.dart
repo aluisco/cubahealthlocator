@@ -259,7 +259,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                               } else if (snapshot.hasError) {
                                 return Text('${snapshot.error}');
                               }
-                              return const CircularProgressIndicator();
+                              return const CircularProgressIndicator.adaptive();
                             },
                           ),
                         ),
@@ -332,7 +332,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                         fontWeight: FontWeight.bold),
                                     children: const [
                                       TextSpan(
-                                        text: '0.1 Beta',
+                                        text: '0.2 Beta',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,

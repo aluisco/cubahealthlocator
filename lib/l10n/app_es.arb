@@ -14,5 +14,6 @@
   "reallyexit": "¿Realmente desea salir de la Aplicación?",
   "exit": "Salir",
   "resultsnotfound": "¡No se han encontrado resultados!",
-  "searchinst": "Buscar Instituciones..."
+  "searchinst": "Buscar Instituciones...",
+  "loading": "Cargando..."
 }

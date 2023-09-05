@@ -8,6 +8,7 @@ import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
+import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -331,7 +332,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const Loading();
       },
     );
   }

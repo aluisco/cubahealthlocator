@@ -38,5 +38,6 @@
   "reallyexit": "Do yo really want to exit the App?",
   "exit": "Exit",
   "resultsnotfound": "No results found!",
-  "searchinst": "Search Institutions..."
+  "searchinst": "Search Institutions...",
+  "loading": "Loading..."
 }
