@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/provincia_provider.dart';
+import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/provincia.dart';
@@ -16,14 +17,18 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   late Future<List<Provincia>> listProvincias;
+  late AnimationController controller;
+  late Animation<double> animation;
 
   Locale? _locale;
   @override
   void initState() {
+    super.initState();
     listProvincias = getProvincias();
     WidgetsBinding.instance.addObserver(this);
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => setLocale(context));
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => setLocale(context),
+    );
   }
 
   @override
@@ -191,7 +196,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                 return CarouselSlider.builder(
                                   options: CarouselOptions(
                                     aspectRatio: 1.5,
-                                    viewportFraction: 0.8,
+                                    viewportFraction: 0.65,
                                     enlargeCenterPage: true,
                                     enlargeStrategy:
                                         CenterPageEnlargeStrategy.height,
@@ -202,54 +207,61 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (BuildContext context,
                                       int itemIndex, int pageViewIndex) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (BuildContext context) {
-                                              return ProvinciaPage(
-                                                snapshot.data![itemIndex].id,
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      },
-                                      child: SizedBox(
-                                        width: 300.0,
-                                        height: 300.0,
-                                        child: Card(
-                                          shadowColor: Colors.greenAccent,
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(25)),
-                                          ),
-                                          child: ListView(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(25),
-                                                  topRight: Radius.circular(25),
-                                                ),
-                                                child: Image.network(
-                                                  '$site${snapshot.data![itemIndex].imagen}',
-                                                  fit: BoxFit.cover,
-                                                  height: 205,
+                                    return Material(
+                                      elevation: 8,
+                                      borderRadius: BorderRadius.circular(15),
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white70,
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: InkWell(
+                                          splashColor: Colors.black87,
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        ProvinciaPage(
+                                                  snapshot.data![itemIndex].id,
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                snapshot
-                                                    .data![itemIndex].nombre,
-                                                style: const TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black,
+                                            );
+                                          },
+                                          child: Card(
+                                            color: Colors.indigoAccent,
+                                            clipBehavior: Clip.hardEdge,
+                                            child: Wrap(
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Container(
+                                                      constraints:
+                                                          BoxConstraints.tight(
+                                                        const Size.square(230),
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              '$site${snapshot.data![itemIndex].imagen}'),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      snapshot.data![itemIndex]
+                                                          .nombre,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium,
+                                                    ),
+                                                  ],
                                                 ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -264,6 +276,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                           ),
                         ),
                       ),
+                      const ArrowsPage(),
                     ],
                   ),
                 ),

@@ -39,5 +39,6 @@
   "exit": "Exit",
   "resultsnotfound": "No results found!",
   "searchinst": "Search Institutions...",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "swipe": "Swipe to the Sides"
 }
