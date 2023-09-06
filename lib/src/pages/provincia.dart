@@ -5,6 +5,7 @@ import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/api/municipio_provider.dart';
 import 'package:smcsalud/src/api/provincia_provider.dart';
 import 'package:smcsalud/src/models/institucion.dart';
+import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/models/provincia.dart';
@@ -25,6 +26,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
   late Future<Provincia> provinciaFuture;
   late Future<List<Municipio>> listMunicipioFuture;
   late Future<List<Institucion>> listInstitucionFuture;
+  bool more = false;
 
   @override
   void initState() {
@@ -166,53 +168,67 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                               itemCount: municipios.length,
                               itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return MunicipioPage(
-                                            municipios[itemIndex].id,
+                                if (municipios.length > 1) {
+                                  more = true;
+                                }
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Material(
+                                    elevation: 8,
+                                    borderRadius: BorderRadius.circular(15),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white70,
+                                        shape: BoxShape.rectangle,
+                                      ),
+                                      child: InkWell(
+                                        splashColor: Colors.black87,
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  MunicipioPage(
+                                                municipios[itemIndex].id,
+                                              ),
+                                            ),
                                           );
                                         },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 300.0,
-                                    height: 300.0,
-                                    child: Card(
-                                      shadowColor: Colors.greenAccent,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(25)),
-                                      ),
-                                      child: ListView(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(25),
-                                              topRight: Radius.circular(25),
-                                            ),
-                                            child: Image.network(
-                                              '$site${municipios[itemIndex].imagen}',
-                                              fit: BoxFit.cover,
-                                              height: 205,
-                                            ),
+                                        child: Card(
+                                          color: Colors.indigoAccent,
+                                          clipBehavior: Clip.hardEdge,
+                                          child: Wrap(
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    constraints:
+                                                        BoxConstraints.tight(
+                                                      const Size.fromHeight(
+                                                          230),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            '$site${municipios[itemIndex].imagen}'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    municipios[itemIndex]
+                                                        .nombre,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            municipios[itemIndex].nombre,
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.black,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -220,6 +236,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                               },
                             ),
                           ),
+                          if (more) const ArrowsPage(),
                         ],
                       ),
                     ),

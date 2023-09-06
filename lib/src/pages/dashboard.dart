@@ -207,60 +207,71 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (BuildContext context,
                                       int itemIndex, int pageViewIndex) {
-                                    return Material(
-                                      elevation: 8,
-                                      borderRadius: BorderRadius.circular(15),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white70,
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.black87,
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        ProvinciaPage(
-                                                  snapshot.data![itemIndex].id,
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: Material(
+                                        elevation: 8,
+                                        borderRadius: BorderRadius.circular(15),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white70,
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.black87,
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          ProvinciaPage(
+                                                    snapshot
+                                                        .data![itemIndex].id,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                          child: Card(
-                                            color: Colors.indigoAccent,
-                                            clipBehavior: Clip.hardEdge,
-                                            child: Wrap(
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Container(
-                                                      constraints:
-                                                          BoxConstraints.tight(
-                                                        const Size.square(230),
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              '$site${snapshot.data![itemIndex].imagen}'),
-                                                          fit: BoxFit.cover,
+                                              );
+                                            },
+                                            child: Card(
+                                              color: Colors.indigoAccent,
+                                              clipBehavior: Clip.hardEdge,
+                                              child: Wrap(
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Container(
+                                                        constraints:
+                                                            BoxConstraints
+                                                                .tight(
+                                                          const Size.fromHeight(
+                                                              230),
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image: NetworkImage(
+                                                                '$site${snapshot.data![itemIndex].imagen}'),
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      snapshot.data![itemIndex]
-                                                          .nombre,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .titleMedium,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                                      Text(
+                                                        snapshot
+                                                            .data![itemIndex]
+                                                            .nombre,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -345,7 +356,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                         fontWeight: FontWeight.bold),
                                     children: const [
                                       TextSpan(
-                                        text: '0.2 Beta',
+                                        text: '0.3 Beta',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,

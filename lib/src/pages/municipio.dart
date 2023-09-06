@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/api/municipio_provider.dart';
+import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/models/municipio.dart';
@@ -22,6 +23,7 @@ class MunicipioPage extends StatefulWidget {
 class _MunicipioPageState extends State<MunicipioPage> {
   late Future<Municipio> municipioFuture;
   late Future<List<Institucion>> listInstitucionFuture;
+  bool more = false;
 
   @override
   void initState() {
@@ -160,53 +162,67 @@ class _MunicipioPageState extends State<MunicipioPage> {
                               itemCount: instituciones.length,
                               itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return InstitucionPage(
-                                            instituciones[itemIndex].id,
+                                if (instituciones.length > 1) {
+                                  more = true;
+                                }
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Material(
+                                    elevation: 8,
+                                    borderRadius: BorderRadius.circular(15),
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white70,
+                                        shape: BoxShape.rectangle,
+                                      ),
+                                      child: InkWell(
+                                        splashColor: Colors.black87,
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  InstitucionPage(
+                                                instituciones[itemIndex].id,
+                                              ),
+                                            ),
                                           );
                                         },
-                                      ),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    width: 300.0,
-                                    height: 300.0,
-                                    child: Card(
-                                      shadowColor: Colors.greenAccent,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(25)),
-                                      ),
-                                      child: ListView(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(25),
-                                              topRight: Radius.circular(25),
-                                            ),
-                                            child: Image.network(
-                                              '$site${instituciones[itemIndex].imagen}',
-                                              fit: BoxFit.cover,
-                                              height: 205,
-                                            ),
+                                        child: Card(
+                                          color: Colors.indigoAccent,
+                                          clipBehavior: Clip.hardEdge,
+                                          child: Wrap(
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    constraints:
+                                                        BoxConstraints.tight(
+                                                      const Size.fromHeight(
+                                                          230),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            '$site${instituciones[itemIndex].imagen}'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    instituciones[itemIndex]
+                                                        .nombre,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            instituciones[itemIndex].nombre,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -214,6 +230,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                               },
                             ),
                           ),
+                          if (more) const ArrowsPage(),
                         ],
                       ),
                     ),
