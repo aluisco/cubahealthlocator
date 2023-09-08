@@ -260,13 +260,16 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                           ),
                                                         ),
                                                       ),
-                                                      Text(
-                                                        snapshot
-                                                            .data![itemIndex]
-                                                            .nombre,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleMedium,
+                                                      Center(
+                                                        child: Text(
+                                                          snapshot
+                                                              .data![itemIndex]
+                                                              .nombre,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleMedium,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
