@@ -245,7 +245,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                       constraints:
                                                           BoxConstraints.loose(
                                                         const Size.fromHeight(
-                                                            230),
+                                                            225),
                                                       ),
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
@@ -255,12 +255,25 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                         ),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      snapshot.data![itemIndex]
-                                                          .nombre,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .titleLarge,
+                                                    SizedBox(
+                                                      height: 32,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            snapshot
+                                                                .data![
+                                                                    itemIndex]
+                                                                .nombre,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleLarge,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -349,7 +362,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                         fontWeight: FontWeight.bold),
                                     children: const [
                                       TextSpan(
-                                        text: '0.4 Beta',
+                                        text: '0.0.4 ALPHA',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,

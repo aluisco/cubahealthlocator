@@ -204,7 +204,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                                 Container(
                                                   constraints:
                                                       BoxConstraints.loose(
-                                                    const Size.fromHeight(230),
+                                                    const Size.fromHeight(225),
                                                   ),
                                                   decoration: BoxDecoration(
                                                     image: DecorationImage(
@@ -214,11 +214,22 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                Text(
-                                                  municipios[itemIndex].nombre,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge,
+                                                SizedBox(
+                                                  height: 32,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        municipios[itemIndex]
+                                                            .nombre,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleLarge,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
