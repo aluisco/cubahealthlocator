@@ -349,7 +349,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                         fontWeight: FontWeight.bold),
                                     children: const [
                                       TextSpan(
-                                        text: '0.3 Beta',
+                                        text: '0.4 Beta',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
