@@ -10,6 +10,7 @@ import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/municipio.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/municipio.dart';
+import 'package:smcsalud/src/utils/footer.dart';
 import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -214,21 +215,39 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  height: 32,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        municipios[itemIndex]
-                                                            .nombre,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleLarge,
+                                                Container(
+                                                  transform:
+                                                      Matrix4.translationValues(
+                                                          0.0, -10.0, 0.0),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.indigoAccent,
+                                                      border: Border.all(
+                                                          color: Colors.indigo,
+                                                          width:
+                                                              1.0), // Set border width
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .all(
+                                                        Radius.circular(15.0),
+                                                      ), // Set rounded corner radius
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 10,
+                                                          color: Colors.black,
+                                                          offset: Offset(1, 3),
+                                                        )
+                                                      ] // Make rounded corner of border
                                                       ),
-                                                    ],
+                                                  child: Text(
+                                                    municipios[itemIndex]
+                                                        .nombre,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleLarge,
                                                   ),
                                                 ),
                                               ],
@@ -250,6 +269,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                 ),
               ],
             ),
+            bottomNavigationBar: const FooterPage(),
           );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');

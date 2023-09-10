@@ -5,9 +5,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/imagenes_provider.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
+import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
+import 'package:smcsalud/src/utils/footer.dart';
 import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -25,6 +27,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
   late Future<Institucion> institucionFuture;
   late Future<List<Imagenes>> listImagenesFuture;
   late Future<List<Institucion>> listInstitucionFuture;
+  bool more = false;
 
   @override
   void initState() {
@@ -177,6 +180,9 @@ class _InstitucionPageState extends State<InstitucionPage> {
                               itemCount: imagenes.length,
                               itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) {
+                                if (imagenes.length > 1) {
+                                  more = true;
+                                }
                                 return GestureDetector(
                                   onTap: () {
                                     showGeneralDialog(
@@ -265,30 +271,25 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       context: context,
                                     );
                                   },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ListView(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(25),
-                                          ),
-                                          child: Image.network(
-                                            '$site${imagenes[itemIndex].photo}',
-                                            fit: BoxFit.cover,
-                                            height: 205,
-                                          ),
+                                  child: ListView(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(25),
                                         ),
-                                        const SizedBox(
-                                          height: 10,
+                                        child: Image.network(
+                                          '$site${imagenes[itemIndex].photo}',
+                                          fit: BoxFit.cover,
+                                          height: 205,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 );
                               },
                             ),
                           ),
+                          if (more) const ArrowsPage(),
                         ],
                       ),
                     ),
@@ -296,6 +297,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
                 ),
               ],
             ),
+            bottomNavigationBar: const FooterPage(),
             floatingActionButton: FloatingActionButton.extended(
               backgroundColor: Colors.indigo,
               onPressed: () async {

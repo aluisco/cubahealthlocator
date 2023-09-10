@@ -7,6 +7,7 @@ import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smcsalud/src/utils/footer.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -255,7 +256,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                         ),
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    /*SizedBox(
                                                       height: 32,
                                                       child: Row(
                                                         mainAxisAlignment:
@@ -273,6 +274,48 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                                 .titleLarge,
                                                           ),
                                                         ],
+                                                      ),
+                                                    ),*/
+                                                    Container(
+                                                      transform: Matrix4
+                                                          .translationValues(
+                                                        0.5,
+                                                        -14.0,
+                                                        0.5,
+                                                      ),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .indigoAccent,
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.indigo,
+                                                              width: 1.0),
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .all(
+                                                            Radius.circular(10),
+                                                          ),
+                                                          boxShadow: const [
+                                                            BoxShadow(
+                                                              blurRadius: 15,
+                                                              color:
+                                                                  Colors.black,
+                                                              offset:
+                                                                  Offset(1, 3),
+                                                            )
+                                                          ]),
+                                                      child: Text(
+                                                        snapshot
+                                                            .data![itemIndex]
+                                                            .nombre,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleLarge,
                                                       ),
                                                     ),
                                                   ],
@@ -301,22 +344,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             ),
           ],
         ),
-        bottomNavigationBar: Container(
-          height: 50.0,
-          color: Colors.indigo,
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Copyright © SMC 2023',
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
+        bottomNavigationBar: const FooterPage(),
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.indigo,
           onPressed: () {
