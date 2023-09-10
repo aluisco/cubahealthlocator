@@ -129,7 +129,8 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                 children: [
                                   ClipRRect(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(15)),
+                                      Radius.circular(15),
+                                    ),
                                     child: Image.network(
                                         '$site${provincia.imagen}'),
                                   ),
@@ -218,30 +219,28 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                                 Container(
                                                   transform:
                                                       Matrix4.translationValues(
-                                                          0.0, -10.0, 0.0),
+                                                          0.5, -14.0, 0.5),
                                                   padding:
                                                       const EdgeInsets.all(10),
                                                   alignment: Alignment.center,
                                                   decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.indigoAccent,
-                                                      border: Border.all(
-                                                          color: Colors.indigo,
-                                                          width:
-                                                              1.0), // Set border width
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .all(
-                                                        Radius.circular(15.0),
-                                                      ), // Set rounded corner radius
-                                                      boxShadow: const [
-                                                        BoxShadow(
-                                                          blurRadius: 10,
-                                                          color: Colors.black,
-                                                          offset: Offset(1, 3),
-                                                        )
-                                                      ] // Make rounded corner of border
-                                                      ),
+                                                    color: Colors.indigoAccent,
+                                                    border: Border.all(
+                                                        color: Colors.indigo,
+                                                        width:
+                                                            1.0), // Set border width
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                      Radius.circular(10.0),
+                                                    ), // Set rounded corner radius
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                        blurRadius: 15,
+                                                        color: Colors.black,
+                                                        offset: Offset(1, 3),
+                                                      )
+                                                    ], // Make rounded corner of border
+                                                  ),
                                                   child: Text(
                                                     municipios[itemIndex]
                                                         .nombre,

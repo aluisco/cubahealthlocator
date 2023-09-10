@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smcsalud/src/api/imagenes_provider.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
-import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
@@ -27,7 +26,6 @@ class _InstitucionPageState extends State<InstitucionPage> {
   late Future<Institucion> institucionFuture;
   late Future<List<Imagenes>> listImagenesFuture;
   late Future<List<Institucion>> listInstitucionFuture;
-  bool more = false;
 
   @override
   void initState() {
@@ -159,6 +157,13 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                   const SizedBox(
                                     height: 6,
                                   ),
+                                  Text(
+                                    AppLocalizations.of(context)!.services,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -180,9 +185,6 @@ class _InstitucionPageState extends State<InstitucionPage> {
                               itemCount: imagenes.length,
                               itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) {
-                                if (imagenes.length > 1) {
-                                  more = true;
-                                }
                                 return GestureDetector(
                                   onTap: () {
                                     showGeneralDialog(
@@ -289,7 +291,6 @@ class _InstitucionPageState extends State<InstitucionPage> {
                               },
                             ),
                           ),
-                          if (more) const ArrowsPage(),
                         ],
                       ),
                     ),

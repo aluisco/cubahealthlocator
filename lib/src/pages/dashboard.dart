@@ -279,36 +279,33 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                     Container(
                                                       transform: Matrix4
                                                           .translationValues(
-                                                        0.5,
-                                                        -14.0,
-                                                        0.5,
-                                                      ),
+                                                              0.5, -14.0, 0.5),
                                                       padding:
                                                           const EdgeInsets.all(
                                                               10),
                                                       alignment:
                                                           Alignment.center,
                                                       decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .indigoAccent,
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.indigo,
-                                                              width: 1.0),
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .all(
-                                                            Radius.circular(10),
-                                                          ),
-                                                          boxShadow: const [
-                                                            BoxShadow(
-                                                              blurRadius: 15,
-                                                              color:
-                                                                  Colors.black,
-                                                              offset:
-                                                                  Offset(1, 3),
-                                                            )
-                                                          ]),
+                                                        color:
+                                                            Colors.indigoAccent,
+                                                        border: Border.all(
+                                                            color:
+                                                                Colors.indigo,
+                                                            width: 1.0),
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .all(
+                                                          Radius.circular(10),
+                                                        ),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 15,
+                                                            color: Colors.black,
+                                                            offset:
+                                                                Offset(1, 3),
+                                                          )
+                                                        ],
+                                                      ),
                                                       child: Text(
                                                         snapshot
                                                             .data![itemIndex]
