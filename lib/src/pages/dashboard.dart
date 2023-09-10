@@ -195,86 +195,76 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                               if (snapshot.hasData && snapshot.data != null) {
                                 return CarouselSlider.builder(
                                   options: CarouselOptions(
+                                    height: 265,
                                     aspectRatio: 1.5,
-                                    viewportFraction: 0.65,
+                                    viewportFraction: 0.8,
                                     enlargeCenterPage: true,
                                     enlargeStrategy:
-                                        CenterPageEnlargeStrategy.height,
+                                        CenterPageEnlargeStrategy.scale,
                                     autoPlay: false,
                                     enlargeFactor: 0.3,
                                     scrollDirection: Axis.horizontal,
+                                    enableInfiniteScroll: true,
                                   ),
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (BuildContext context,
                                       int itemIndex, int pageViewIndex) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      child: Material(
-                                        elevation: 8,
-                                        borderRadius: BorderRadius.circular(15),
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white70,
-                                            shape: BoxShape.rectangle,
-                                          ),
-                                          child: InkWell(
-                                            splashColor: Colors.black87,
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          ProvinciaPage(
-                                                    snapshot
-                                                        .data![itemIndex].id,
-                                                  ),
+                                    return Material(
+                                      elevation: 8,
+                                      borderRadius: BorderRadius.circular(15),
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white54,
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: InkWell(
+                                          splashColor: Colors.indigo,
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        ProvinciaPage(
+                                                  snapshot.data![itemIndex].id,
                                                 ),
-                                              );
-                                            },
-                                            child: Card(
-                                              color: Colors.indigoAccent,
-                                              clipBehavior: Clip.hardEdge,
-                                              child: Wrap(
-                                                children: [
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Container(
-                                                        constraints:
-                                                            BoxConstraints
-                                                                .tight(
-                                                          const Size.fromHeight(
-                                                              230),
-                                                        ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image:
-                                                              DecorationImage(
-                                                            image: NetworkImage(
-                                                                '$site${snapshot.data![itemIndex].imagen}'),
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Center(
-                                                        child: Text(
-                                                          snapshot
-                                                              .data![itemIndex]
-                                                              .nombre,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .titleMedium,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
                                               ),
+                                            );
+                                          },
+                                          child: Card(
+                                            elevation: 0,
+                                            color: Colors.blueAccent,
+                                            clipBehavior: Clip.hardEdge,
+                                            child: Wrap(
+                                              children: [
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Container(
+                                                      constraints:
+                                                          BoxConstraints.loose(
+                                                        const Size.fromHeight(
+                                                            230),
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              '$site${snapshot.data![itemIndex].imagen}'),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      snapshot.data![itemIndex]
+                                                          .nombre,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleLarge,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),

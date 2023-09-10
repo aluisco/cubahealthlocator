@@ -155,11 +155,12 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                           SliverToBoxAdapter(
                             child: CarouselSlider.builder(
                               options: CarouselOptions(
+                                height: 265,
                                 aspectRatio: 1.5,
                                 viewportFraction: 0.8,
                                 enlargeCenterPage: true,
                                 enlargeStrategy:
-                                    CenterPageEnlargeStrategy.height,
+                                    CenterPageEnlargeStrategy.scale,
                                 autoPlay: false,
                                 enlargeFactor: 0.3,
                                 scrollDirection: Axis.horizontal,
@@ -171,63 +172,57 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                 if (municipios.length > 1) {
                                   more = true;
                                 }
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  child: Material(
-                                    elevation: 8,
-                                    borderRadius: BorderRadius.circular(15),
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white70,
-                                        shape: BoxShape.rectangle,
-                                      ),
-                                      child: InkWell(
-                                        splashColor: Colors.black87,
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  MunicipioPage(
-                                                municipios[itemIndex].id,
-                                              ),
+                                return Material(
+                                  elevation: 8,
+                                  borderRadius: BorderRadius.circular(15),
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white54,
+                                      shape: BoxShape.rectangle,
+                                    ),
+                                    child: InkWell(
+                                      splashColor: Colors.indigo,
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                MunicipioPage(
+                                              municipios[itemIndex].id,
                                             ),
-                                          );
-                                        },
-                                        child: Card(
-                                          color: Colors.indigoAccent,
-                                          clipBehavior: Clip.hardEdge,
-                                          child: Wrap(
-                                            children: [
-                                              Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Container(
-                                                    constraints:
-                                                        BoxConstraints.tight(
-                                                      const Size.fromHeight(
-                                                          230),
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            '$site${municipios[itemIndex].imagen}'),
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    municipios[itemIndex]
-                                                        .nombre,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
                                           ),
+                                        );
+                                      },
+                                      child: Card(
+                                        color: Colors.indigoAccent,
+                                        clipBehavior: Clip.hardEdge,
+                                        child: Wrap(
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Container(
+                                                  constraints:
+                                                      BoxConstraints.loose(
+                                                    const Size.fromHeight(230),
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          '$site${municipios[itemIndex].imagen}'),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  municipios[itemIndex].nombre,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleLarge,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),

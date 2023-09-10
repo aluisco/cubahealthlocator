@@ -163,11 +163,12 @@ class _InstitucionPageState extends State<InstitucionPage> {
                           SliverToBoxAdapter(
                             child: CarouselSlider.builder(
                               options: CarouselOptions(
+                                height: 265,
                                 aspectRatio: 1.5,
                                 viewportFraction: 0.8,
                                 enlargeCenterPage: true,
                                 enlargeStrategy:
-                                    CenterPageEnlargeStrategy.height,
+                                    CenterPageEnlargeStrategy.scale,
                                 autoPlay: false,
                                 enlargeFactor: 0.3,
                                 scrollDirection: Axis.horizontal,
