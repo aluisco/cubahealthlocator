@@ -279,7 +279,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                     Container(
                                                       transform: Matrix4
                                                           .translationValues(
-                                                              0.5, -14.0, 0.5),
+                                                              0.5, -13.0, 0.5),
                                                       padding:
                                                           const EdgeInsets.all(
                                                               10),
