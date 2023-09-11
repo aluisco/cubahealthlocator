@@ -239,7 +239,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                                         .nombre,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .titleLarge,
+                                                        .titleMedium,
                                                   ),
                                                 ),
                                               ],

@@ -246,7 +246,7 @@ class _ProvinciaPageState extends State<ProvinciaPage> {
                                                         .nombre,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .titleLarge,
+                                                        .titleMedium,
                                                   ),
                                                 ),
                                               ],

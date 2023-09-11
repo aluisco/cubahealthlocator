@@ -256,26 +256,6 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                         ),
                                                       ),
                                                     ),
-                                                    /*SizedBox(
-                                                      height: 32,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(
-                                                            snapshot
-                                                                .data![
-                                                                    itemIndex]
-                                                                .nombre,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleLarge,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),*/
                                                     Container(
                                                       transform: Matrix4
                                                           .translationValues(
@@ -312,7 +292,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                             .nombre,
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .titleLarge,
+                                                            .titleMedium,
                                                       ),
                                                     ),
                                                   ],
