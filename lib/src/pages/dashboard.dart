@@ -119,6 +119,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
     return WillPopScope(
       onWillPop: showExitPopup,
       child: Scaffold(
+        extendBody: true,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.primary,
@@ -127,201 +128,215 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             style: const TextStyle(color: Colors.white),
           ),
         ),
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.transparent,
-                image: DecorationImage(
-                  image: AssetImage('assets/img/peakpx.jpg'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.white, Colors.white60, Colors.transparent],
-                  stops: [0, 0.7, 1],
-                ),
-              ),
-              child: ClipRRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              ClipRRect(
-                                child: Image.asset(
-                                  'assets/img/smc.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.dashboardMessage,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              const Divider(),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.provinceVisit,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Center(
-                          child: FutureBuilder<List<Provincia>>(
-                            future: listProvincias,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData && snapshot.data != null) {
-                                return CarouselSlider.builder(
-                                  options: CarouselOptions(
-                                    height: 265,
-                                    aspectRatio: 1.5,
-                                    viewportFraction: 0.8,
-                                    enlargeCenterPage: true,
-                                    enlargeStrategy:
-                                        CenterPageEnlargeStrategy.scale,
-                                    autoPlay: false,
-                                    enlargeFactor: 0.3,
-                                    scrollDirection: Axis.horizontal,
-                                    enableInfiniteScroll: true,
-                                  ),
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder: (BuildContext context,
-                                      int itemIndex, int pageViewIndex) {
-                                    return Material(
-                                      elevation: 8,
-                                      borderRadius: BorderRadius.circular(15),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white54,
-                                          shape: BoxShape.rectangle,
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.indigo,
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        ProvinciaPage(
-                                                  snapshot.data![itemIndex].id,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          child: Card(
-                                            elevation: 0,
-                                            color: Colors.blueAccent,
-                                            clipBehavior: Clip.hardEdge,
-                                            child: Wrap(
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Container(
-                                                      constraints:
-                                                          BoxConstraints.loose(
-                                                        const Size.fromHeight(
-                                                            225),
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              '$site${snapshot.data![itemIndex].imagen}'),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      transform: Matrix4
-                                                          .translationValues(
-                                                              0.5, -13.0, 0.5),
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.indigoAccent,
-                                                        border: Border.all(
-                                                            color:
-                                                                Colors.indigo,
-                                                            width: 1.0),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                          Radius.circular(10),
-                                                        ),
-                                                        boxShadow: const [
-                                                          BoxShadow(
-                                                            blurRadius: 15,
-                                                            color: Colors.black,
-                                                            offset:
-                                                                Offset(1, 3),
-                                                          )
-                                                        ],
-                                                      ),
-                                                      child: Text(
-                                                        snapshot
-                                                            .data![itemIndex]
-                                                            .nombre,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .titleMedium,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              } else if (snapshot.hasError) {
-                                return Text('${snapshot.error}');
-                              }
-                              return const CircularProgressIndicator.adaptive();
-                            },
-                          ),
-                        ),
-                      ),
-                      const ArrowsPage(),
-                    ],
+        body: SafeArea(
+          bottom: false,
+          child: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                  image: DecorationImage(
+                    image: AssetImage('assets/img/peakpx.jpg'),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-            ),
-          ],
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.white, Colors.white60, Colors.transparent],
+                    stops: [0, 0.7, 1],
+                  ),
+                ),
+                child: ClipRRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ClipRRect(
+                                  child: Image.asset(
+                                    'assets/img/smc.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .dashboardMessage,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                const Divider(),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!.provinceVisit,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Center(
+                            child: FutureBuilder<List<Provincia>>(
+                              future: listProvincias,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData && snapshot.data != null) {
+                                  return CarouselSlider.builder(
+                                    options: CarouselOptions(
+                                      height: 265,
+                                      aspectRatio: 1.5,
+                                      viewportFraction: 0.8,
+                                      enlargeCenterPage: true,
+                                      enlargeStrategy:
+                                          CenterPageEnlargeStrategy.scale,
+                                      autoPlay: false,
+                                      enlargeFactor: 0.3,
+                                      scrollDirection: Axis.horizontal,
+                                      enableInfiniteScroll: true,
+                                    ),
+                                    itemCount: snapshot.data!.length,
+                                    itemBuilder: (BuildContext context,
+                                        int itemIndex, int pageViewIndex) {
+                                      return Material(
+                                        elevation: 8,
+                                        borderRadius: BorderRadius.circular(15),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Colors.white54,
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.indigo,
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          ProvinciaPage(
+                                                    snapshot
+                                                        .data![itemIndex].id,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Card(
+                                              elevation: 0,
+                                              color: Colors.blueAccent,
+                                              clipBehavior: Clip.hardEdge,
+                                              child: Wrap(
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Container(
+                                                        constraints:
+                                                            BoxConstraints
+                                                                .loose(
+                                                          const Size.fromHeight(
+                                                              225),
+                                                        ),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image: NetworkImage(
+                                                                '$site${snapshot.data![itemIndex].imagen}'),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        transform: Matrix4
+                                                            .translationValues(
+                                                                0.5,
+                                                                -11.0,
+                                                                0.5),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .indigoAccent,
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.indigo,
+                                                              width: 1.0),
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                  .all(
+                                                            Radius.circular(10),
+                                                          ),
+                                                          boxShadow: const [
+                                                            BoxShadow(
+                                                              blurRadius: 15,
+                                                              color:
+                                                                  Colors.black,
+                                                              offset:
+                                                                  Offset(1, 3),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        child: Text(
+                                                          snapshot
+                                                              .data![itemIndex]
+                                                              .nombre,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .titleMedium,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text('${snapshot.error}');
+                                }
+                                return const CircularProgressIndicator
+                                    .adaptive();
+                              },
+                            ),
+                          ),
+                        ),
+                        const ArrowsPage(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        bottomNavigationBar: const FooterPage(),
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.indigo,
           onPressed: () {
@@ -385,15 +400,12 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                     ),
                   ),
                   actions: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                        ),
-                        child: const Text('OK'),
+                    ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
                       ),
+                      child: const Text('OK'),
                     ),
                   ],
                 );
@@ -408,6 +420,23 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
           icon: const Icon(
             Icons.info,
             color: Colors.white,
+          ),
+        ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniEndDocked,
+        bottomNavigationBar: const BottomAppBar(
+          color: Colors.indigo,
+          shape: CircularNotchedRectangle(),
+          notchMargin: 5,
+          height: 40,
+          child: Padding(
+            padding: EdgeInsets.only(left: 30),
+            child: Text(
+              'Copyright © SMC 2023',
+              style: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
           ),
         ),
       ),
