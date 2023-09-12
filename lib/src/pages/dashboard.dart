@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smcsalud/src/api/provincia_provider.dart';
 import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
@@ -7,7 +8,6 @@ import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:smcsalud/src/utils/footer.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -268,9 +268,9 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                                       Container(
                                                         transform: Matrix4
                                                             .translationValues(
-                                                                0.5,
-                                                                -11.0,
-                                                                0.5),
+                                                                0.1,
+                                                                -10.0,
+                                                                0.1),
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(10),
@@ -339,6 +339,15 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
         ),
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.indigo,
+          tooltip: AppLocalizations.of(context)!.info,
+          label: Text(
+            AppLocalizations.of(context)!.info,
+            style: const TextStyle(color: Colors.white),
+          ),
+          icon: const Icon(
+            Icons.info,
+            color: Colors.white,
+          ),
           onPressed: () {
             showDialog(
               context: context,
@@ -380,14 +389,11 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                     text: AppLocalizations.of(context)!.version,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
-                                    children: const [
+                                    children: [
                                       TextSpan(
                                         text: '0.0.4 ALPHA',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                          color: Colors.redAccent,
-                                        ),
+                                        style: GoogleFonts.aBeeZee(
+                                            color: Colors.red),
                                       ),
                                     ],
                                   ),
@@ -412,30 +418,29 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
               },
             );
           },
-          label: Text(
-            AppLocalizations.of(context)!.info,
-            style: const TextStyle(color: Colors.white),
-          ),
-          tooltip: AppLocalizations.of(context)!.info,
-          icon: const Icon(
-            Icons.info,
-            color: Colors.white,
-          ),
         ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.miniEndDocked,
-        bottomNavigationBar: const BottomAppBar(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        bottomNavigationBar: BottomAppBar(
           color: Colors.indigo,
-          shape: CircularNotchedRectangle(),
-          notchMargin: 5,
-          height: 40,
+          shape: const AutomaticNotchedShape(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25),
+              ),
+            ),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(25),
+              ),
+            ),
+          ),
+          notchMargin: 8,
+          height: 45,
           child: Padding(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 50),
             child: Text(
               'Copyright © SMC 2023',
-              style: TextStyle(
-                fontSize: 14.0,
-              ),
+              style: GoogleFonts.abel(),
             ),
           ),
         ),

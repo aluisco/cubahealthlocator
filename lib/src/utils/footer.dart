@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FooterPage extends StatelessWidget {
   const FooterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50.0,
+    return BottomAppBar(
       color: Colors.indigo,
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Copyright © SMC 2023',
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Colors.white,
-            ),
+      shape: const AutomaticNotchedShape(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25),
           ),
-        ],
+        ),
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
+      ),
+      notchMargin: 8,
+      height: 45,
+      child: Text(
+        'Copyright © SMC 2023',
+        style: GoogleFonts.abel(),
+        textAlign: TextAlign.center,
       ),
     );
   }

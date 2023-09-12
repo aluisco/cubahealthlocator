@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:smcsalud/src/pages/dashboard.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,6 +23,12 @@ class MyApp extends StatelessWidget {
       ).copyWith(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.aBeeZee(
+            fontSize: 20,
+          ),
+        ),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
             fontSize: 16,
@@ -42,6 +49,12 @@ class MyApp extends StatelessWidget {
       ).copyWith(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.aBeeZee(
+            fontSize: 20,
+          ),
+        ),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
             fontSize: 16,
