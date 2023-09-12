@@ -130,13 +130,20 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                     const SizedBox(
                                       height: 6,
                                     ),
-                                    Text(
-                                      AppLocalizations.of(context)!.address +
-                                          institucion.direccion,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                      textAlign: TextAlign.left,
+                                    Row(
+                                      children: [
+                                        Flexible(
+                                          fit: FlexFit.tight,
+                                          child: Text(
+                                            AppLocalizations.of(context)!
+                                                    .address +
+                                                institucion.direccion,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(
                                       height: 3,
