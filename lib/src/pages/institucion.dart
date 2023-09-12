@@ -1,13 +1,10 @@
 import 'dart:ui';
 import 'dart:io' show Platform;
 import 'package:android_intent_plus/android_intent.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smcsalud/src/api/imagenes_provider.dart';
 import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/utils/constants.dart';
-import 'package:smcsalud/src/models/imagenes.dart';
 import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/utils/loading.dart';
 import 'package:smcsalud/src/utils/search.dart';
@@ -24,14 +21,12 @@ class InstitucionPage extends StatefulWidget {
 
 class _InstitucionPageState extends State<InstitucionPage> {
   late Future<Institucion> institucionFuture;
-  late Future<List<Imagenes>> listImagenesFuture;
   late Future<List<Institucion>> listInstitucionFuture;
 
   @override
   void initState() {
     institucionFuture = getInstitucion(widget.iid);
     listInstitucionFuture = getInstituciones();
-    listImagenesFuture = getImagenes();
     super.initState();
   }
 
@@ -39,16 +34,13 @@ class _InstitucionPageState extends State<InstitucionPage> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Future.wait(
-        [institucionFuture, listImagenesFuture, listInstitucionFuture],
+        [institucionFuture, listInstitucionFuture],
       ),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         final Locale locale = Localizations.localeOf(context);
         if (snapshot.hasData && snapshot.data != null) {
           final institucion = snapshot.data![0];
-          final imagenes = snapshot.data![1]
-              .where((propiedad) => propiedad.institucion == widget.iid)
-              .toList();
-          final instituciones = snapshot.data![2];
+          final instituciones = snapshot.data![1];
           final String institucionDescrip;
           if (locale.languageCode == 'es') {
             institucionDescrip = institucion.descripcionEs;
@@ -125,12 +117,13 @@ class _InstitucionPageState extends State<InstitucionPage> {
                           slivers: [
                             SliverToBoxAdapter(
                               child: Container(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(15.0),
                                 child: Column(
                                   children: [
                                     ClipRRect(
                                       borderRadius: const BorderRadius.all(
-                                          Radius.circular(15)),
+                                        Radius.circular(15),
+                                      ),
                                       child: Image.network(
                                           '$site${institucion.imagen}'),
                                     ),
@@ -143,6 +136,61 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       style: const TextStyle(
                                         color: Colors.black,
                                       ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    const SizedBox(
+                                      height: 3,
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!.phone +
+                                              institucion.phone,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        ElevatedButton.icon(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.indigoAccent,
+                                            shape: const StadiumBorder(),
+                                          ),
+                                          onPressed: () async {
+                                            String phone = institucion.phone;
+                                            if (Platform.isAndroid) {
+                                              final AndroidIntent intent =
+                                                  AndroidIntent(
+                                                action: 'action_view',
+                                                data: 'tel:$phone',
+                                              );
+                                              intent.launch();
+                                            } else {
+                                              var url = "tel:$phone";
+                                              if (await canLaunchUrlString(
+                                                  url)) {
+                                                await launchUrlString(url);
+                                              } else {
+                                                throw 'Could not launch $url';
+                                              }
+                                            }
+                                          },
+                                          icon: const Icon(
+                                            Icons.call,
+                                            color: Colors.white,
+                                          ),
+                                          label: Text(
+                                            AppLocalizations.of(context)!.call,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     const SizedBox(
                                       height: 3,
@@ -152,147 +200,13 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       style: const TextStyle(
                                         color: Colors.black,
                                       ),
+                                      textAlign: TextAlign.justify,
                                     ),
                                     const SizedBox(
-                                      height: 6,
-                                    ),
-                                    const Divider(),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!.services,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                      ),
+                                      height: 60,
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                            SliverToBoxAdapter(
-                              child: CarouselSlider.builder(
-                                options: CarouselOptions(
-                                  height: 265,
-                                  aspectRatio: 1.5,
-                                  viewportFraction: 0.8,
-                                  enlargeCenterPage: true,
-                                  enlargeStrategy:
-                                      CenterPageEnlargeStrategy.scale,
-                                  autoPlay: false,
-                                  enlargeFactor: 0.3,
-                                  scrollDirection: Axis.horizontal,
-                                  enableInfiniteScroll: false,
-                                ),
-                                itemCount: imagenes.length,
-                                itemBuilder: (BuildContext context,
-                                    int itemIndex, int pageViewIndex) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      showGeneralDialog(
-                                        barrierDismissible: true,
-                                        barrierLabel: '',
-                                        barrierColor: Colors.black12,
-                                        transitionDuration:
-                                            const Duration(milliseconds: 500),
-                                        pageBuilder: (ctx, anim1, anim2) =>
-                                            AlertDialog(
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25.0),
-                                            ),
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          backgroundColor: Colors.black38,
-                                          title:
-                                              Text(imagenes[itemIndex].nombre),
-                                          content: SizedBox(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(15),
-                                                  child: Column(
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                          Radius.circular(15),
-                                                        ),
-                                                        child: Image.network(
-                                                            '$site${imagenes[itemIndex].photo}'),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      if (locale.languageCode ==
-                                                          'es')
-                                                        Text(
-                                                          imagenes[itemIndex]
-                                                              .descripcionEs,
-                                                        ),
-                                                      if (locale.languageCode ==
-                                                          'en')
-                                                        Text(
-                                                          imagenes[itemIndex]
-                                                              .descripcionEn,
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          actions: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 10.0),
-                                              child: ElevatedButton(
-                                                onPressed: () =>
-                                                    Navigator.of(context).pop(),
-                                                child: const Text('OK'),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        transitionBuilder:
-                                            (ctx, anim1, anim2, child) =>
-                                                BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 4 * anim1.value,
-                                              sigmaY: 4 * anim1.value),
-                                          child: FadeTransition(
-                                            opacity: anim1,
-                                            child: child,
-                                          ),
-                                        ),
-                                        context: context,
-                                      );
-                                    },
-                                    child: ListView(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(25),
-                                          ),
-                                          child: Image.network(
-                                            '$site${imagenes[itemIndex].photo}',
-                                            fit: BoxFit.cover,
-                                            height: 205,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
                               ),
                             ),
                           ],

@@ -41,5 +41,6 @@
   "searchinst": "Search Institutions...",
   "loading": "Loading...",
   "swipe": "Swipe to the Sides",
-  "services": "Services:"
+  "phone": "Phone: ",
+  "call": "Call"
 }

@@ -17,5 +17,6 @@
   "searchinst": "Buscar Instituciones...",
   "loading": "Cargando...",
   "swipe": "Deslizar hacia los Lados",
-  "services": "Servicios:"
+  "phone": "Teléfono: ",
+  "call":"Llamar" 
 }
