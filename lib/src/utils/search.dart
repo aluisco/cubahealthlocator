@@ -67,11 +67,11 @@ class SearchInstitucion extends SearchDelegate<Institucion> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    _filter = instituciones.where((institucion) {
-      return institucion.nombre
-          .toLowerCase()
-          .contains(query.trim().toLowerCase());
-    }).toList();
+    _filter = instituciones
+        .where((institucion) => institucion.nombre.toLowerCase().contains(
+              query.trim().toLowerCase(),
+            ))
+        .toList();
     if (_filter.isEmpty) {
       return const NotFound();
     } else {

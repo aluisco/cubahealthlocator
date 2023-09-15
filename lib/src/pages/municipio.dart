@@ -119,7 +119,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                         slivers: [
                           SliverToBoxAdapter(
                             child: Container(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(15.0),
                               child: Column(
                                 children: [
                                   ClipRRect(
@@ -135,6 +135,7 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                     style: const TextStyle(
                                       color: Colors.black,
                                     ),
+                                    textAlign: TextAlign.justify,
                                   ),
                                   const SizedBox(
                                     height: 6,
@@ -254,6 +255,11 @@ class _MunicipioPageState extends State<MunicipioPage> {
                             ),
                           ),
                           if (more) const ArrowsPage(),
+                          const SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 40,
+                            ),
+                          ),
                         ],
                       ),
                     ),

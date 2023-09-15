@@ -1,13 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smcsalud/src/api/institucion_provider.dart';
 import 'package:smcsalud/src/api/provincia_provider.dart';
+import 'package:smcsalud/src/models/institucion.dart';
 import 'package:smcsalud/src/utils/arrows.dart';
 import 'package:smcsalud/src/utils/constants.dart';
 import 'package:smcsalud/src/models/provincia.dart';
 import 'package:smcsalud/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smcsalud/src/utils/search.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -24,12 +27,12 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   Locale? _locale;
   @override
   void initState() {
-    super.initState();
     listProvincias = getProvincias();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => setLocale(context),
     );
+    super.initState();
   }
 
   @override
@@ -127,6 +130,29 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             AppLocalizations.of(context)!.dashboardTitle,
             style: const TextStyle(color: Colors.white),
           ),
+          actions: [
+            IconButton(
+              onPressed: () async {
+                final List<Institucion> listInstituciones = [];
+                final data = await getInstituciones();
+                for (var item in data) {
+                  listInstituciones.add(item);
+                }
+                if (!context.mounted) return;
+                showSearch(
+                  context: context,
+                  delegate: SearchInstitucion(
+                    listInstituciones,
+                    AppLocalizations.of(context)!.searchinst,
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: SafeArea(
           bottom: false,
@@ -391,7 +417,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                         fontWeight: FontWeight.bold),
                                     children: [
                                       TextSpan(
-                                        text: '0.0.4 ALPHA',
+                                        text: '0.0.5 ALPHA',
                                         style: GoogleFonts.aBeeZee(
                                             color: Colors.red),
                                       ),

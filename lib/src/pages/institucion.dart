@@ -107,7 +107,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
                           Colors.white60,
                           Colors.transparent
                         ],
-                        stops: [0, 0.7, 1],
+                        stops: [0, 0.5, 1.5],
                       ),
                     ),
                     child: ClipRRect(
@@ -210,7 +210,7 @@ class _InstitucionPageState extends State<InstitucionPage> {
                                       textAlign: TextAlign.justify,
                                     ),
                                     const SizedBox(
-                                      height: 60,
+                                      height: 100,
                                     ),
                                   ],
                                 ),

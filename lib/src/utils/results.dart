@@ -18,7 +18,17 @@ class Results extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(15),
             ),
-            child: Image.network('$site${_filter[index].imagen}'),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                minWidth: 44,
+                minHeight: 44,
+                maxWidth: 64,
+                maxHeight: 64,
+              ),
+              child: Image.network(
+                '$site${_filter[index].imagen}',
+              ),
+            ),
           ),
           title: Text(_filter[index].nombre),
           subtitle: Row(
