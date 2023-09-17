@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:smcsalud/src/utils/constants.dart';
-import 'package:smcsalud/src/models/provincia.dart';
+import 'package:lugares/src/utils/constants.dart';
+import 'package:lugares/src/models/provincia.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Provincia>> getProvincias() async {

@@ -1,16 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smcsalud/src/api/institucion_provider.dart';
-import 'package:smcsalud/src/api/provincia_provider.dart';
-import 'package:smcsalud/src/models/institucion.dart';
-import 'package:smcsalud/src/utils/arrows.dart';
-import 'package:smcsalud/src/utils/constants.dart';
-import 'package:smcsalud/src/models/provincia.dart';
-import 'package:smcsalud/src/pages/provincia.dart';
+import 'package:lugares/src/api/institucion_provider.dart';
+import 'package:lugares/src/api/provincia_provider.dart';
+import 'package:lugares/src/models/institucion.dart';
+import 'package:lugares/src/utils/arrows.dart';
+import 'package:lugares/src/utils/constants.dart';
+import 'package:lugares/src/models/provincia.dart';
+import 'package:lugares/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:smcsalud/src/utils/search.dart';
+import 'package:lugares/src/utils/search.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

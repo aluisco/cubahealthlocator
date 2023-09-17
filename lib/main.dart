@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:smcsalud/src/pages/dashboard.dart';
+import 'package:lugares/src/pages/dashboard.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   Intl.defaultLocale = 'en';
-  runApp(const MyApp());
+  runApp(const Lugares());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Lugares extends StatelessWidget {
+  const Lugares({super.key});
 
   @override
   Widget build(BuildContext context) {

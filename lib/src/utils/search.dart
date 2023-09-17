@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smcsalud/src/models/institucion.dart';
-import 'package:smcsalud/src/utils/notfound.dart';
-import 'package:smcsalud/src/utils/results.dart';
+import 'package:lugares/src/models/institucion.dart';
+import 'package:lugares/src/utils/notfound.dart';
+import 'package:lugares/src/utils/results.dart';
 
 class SearchInstitucion extends SearchDelegate<Institucion> {
   List<Institucion> _filter = [];
