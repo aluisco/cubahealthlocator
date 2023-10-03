@@ -10,6 +10,7 @@ import 'package:lugares/src/models/provincia.dart';
 import 'package:lugares/src/pages/provincia.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lugares/src/utils/faderoute.dart';
 import 'package:lugares/src/utils/search.dart';
 
 class Dashboard extends StatefulWidget {
@@ -254,11 +255,10 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                           child: InkWell(
                                             splashColor: Colors.indigo,
                                             onTap: () {
-                                              Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          ProvinciaPage(
+                                              Navigator.push(
+                                                context,
+                                                FadeRoute(
+                                                  page: ProvinciaPage(
                                                     snapshot
                                                         .data![itemIndex].id,
                                                   ),

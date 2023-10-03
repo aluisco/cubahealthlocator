@@ -8,6 +8,7 @@ import 'package:lugares/src/utils/constants.dart';
 import 'package:lugares/src/models/institucion.dart';
 import 'package:lugares/src/models/municipio.dart';
 import 'package:lugares/src/pages/institucion.dart';
+import 'package:lugares/src/utils/faderoute.dart';
 import 'package:lugares/src/utils/footer.dart';
 import 'package:lugares/src/utils/loading.dart';
 import 'package:lugares/src/utils/search.dart';
@@ -180,10 +181,10 @@ class _MunicipioPageState extends State<MunicipioPage> {
                                     child: InkWell(
                                       splashColor: Colors.indigo,
                                       onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                InstitucionPage(
+                                        Navigator.push(
+                                          context,
+                                          FadeRoute(
+                                            page: InstitucionPage(
                                               instituciones[itemIndex].id,
                                             ),
                                           ),
