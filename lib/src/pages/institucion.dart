@@ -273,10 +273,11 @@ class _InstitucionPageState extends State<InstitucionPage> {
                   ),
                 ),
               ),
-              notchMargin: 8,
+              notchMargin: 6,
               height: 45,
               child: Padding(
-                padding: const EdgeInsets.only(left: 50),
+                padding: EdgeInsets.only(
+                    left: MediaQuery.sizeOf(context).height / 20),
                 child: Text(
                   'Copyright © SMC 2023',
                   style: GoogleFonts.abel(),

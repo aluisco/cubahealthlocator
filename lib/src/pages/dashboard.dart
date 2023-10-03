@@ -184,7 +184,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                       slivers: [
                         SliverToBoxAdapter(
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(15.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -200,6 +200,7 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                                   style: const TextStyle(
                                     color: Colors.black,
                                   ),
+                                  textAlign: TextAlign.justify,
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -368,7 +369,10 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
           tooltip: AppLocalizations.of(context)!.info,
           label: Text(
             AppLocalizations.of(context)!.info,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+            ),
           ),
           icon: const Icon(
             Icons.info,
@@ -460,10 +464,11 @@ class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
               ),
             ),
           ),
-          notchMargin: 8,
+          notchMargin: 6,
           height: 45,
           child: Padding(
-            padding: const EdgeInsets.only(left: 50),
+            padding:
+                EdgeInsets.only(left: MediaQuery.sizeOf(context).height / 20),
             child: Text(
               'Copyright © SMC 2023',
               style: GoogleFonts.abel(),
