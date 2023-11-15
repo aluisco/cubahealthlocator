@@ -8,9 +8,11 @@ class Institucion {
   String descripcionEn;
   String imagen;
   String phone;
+  bool urgencia;
   bool disponible;
   int provincia;
   int municipio;
+  int tipo;
 
   Institucion({
     required this.id,
@@ -20,9 +22,11 @@ class Institucion {
     required this.descripcionEn,
     required this.imagen,
     required this.phone,
+    required this.urgencia,
     required this.disponible,
     required this.provincia,
     required this.municipio,
+    required this.tipo,
   });
 
   factory Institucion.fromRawJson(String str) =>
@@ -38,9 +42,11 @@ class Institucion {
         descripcionEn: json["descripcion_en"],
         imagen: json["imagen"],
         phone: json["phone"],
+        urgencia: json["urgencia"],
         disponible: json["disponible"],
         provincia: json["provincia"],
         municipio: json["municipio"],
+        tipo: json["tipo"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,8 +57,10 @@ class Institucion {
         "descripcion_en": descripcionEn,
         "imagen": imagen,
         "phone": phone,
+        "urgencia": urgencia,
         "disponible": disponible,
         "provincia": provincia,
         "municipio": municipio,
+        "tipo": tipo,
       };
 }

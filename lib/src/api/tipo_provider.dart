@@ -1,39 +1,39 @@
 import 'dart:convert';
+import 'package:lugares/src/models/tipo.dart';
 import 'package:lugares/src/utils/constants.dart';
-import 'package:lugares/src/models/provincia.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<Provincia>> getProvincias() async {
+Future<List<Tipo>> getTipos() async {
   final response = await http.get(
-    Uri.parse('$site/api/provincia/'),
+    Uri.parse('$site/api/tipo/'),
   );
 
   if (response.statusCode == 200) {
-    List<Provincia> provincia = (json.decode(
+    List<Tipo> tipo = (json.decode(
       utf8.decode(response.bodyBytes),
     ) as List)
         .map(
-          (data) => Provincia.fromJson(data),
+          (data) => Tipo.fromJson(data),
         )
         .toList();
-    return provincia;
+    return tipo;
   } else {
-    throw Exception('Failed to load provinces');
+    throw Exception('Failed to load tipo');
   }
 }
 
-Future<Provincia> getProvincia(int id) async {
+Future<Tipo> getTipo(int id) async {
   final response = await http.get(
-    Uri.parse('$site/api/provincia/$id/'),
+    Uri.parse('$site/api/tipo/$id/'),
   );
 
   if (response.statusCode == 200) {
-    return Provincia.fromJson(
+    return Tipo.fromJson(
       jsonDecode(
         utf8.decode(response.bodyBytes),
       ),
     );
   } else {
-    throw Exception('Failed to load province');
+    throw Exception('Failed to load institution');
   }
 }
