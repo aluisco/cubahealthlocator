@@ -4,17 +4,11 @@ import 'package:lugares/src/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Tipo>> getTipos() async {
-  final response = await http.get(
-    Uri.parse('$site/api/tipo/'),
-  );
+  final response = await http.get(Uri.parse('$site/api/tipo/'));
 
   if (response.statusCode == 200) {
-    List<Tipo> tipo = (json.decode(
-      utf8.decode(response.bodyBytes),
-    ) as List)
-        .map(
-          (data) => Tipo.fromJson(data),
-        )
+    List<Tipo> tipo = (json.decode(utf8.decode(response.bodyBytes)) as List)
+        .map((data) => Tipo.fromJson(data))
         .toList();
     return tipo;
   } else {
@@ -23,17 +17,11 @@ Future<List<Tipo>> getTipos() async {
 }
 
 Future<Tipo> getTipo(int id) async {
-  final response = await http.get(
-    Uri.parse('$site/api/tipo/$id/'),
-  );
+  final response = await http.get(Uri.parse('$site/api/tipo/$id/'));
 
   if (response.statusCode == 200) {
-    return Tipo.fromJson(
-      jsonDecode(
-        utf8.decode(response.bodyBytes),
-      ),
-    );
+    return Tipo.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
   } else {
-    throw Exception('Failed to load institution');
+    throw Exception('Failed to load tipo');
   }
 }
