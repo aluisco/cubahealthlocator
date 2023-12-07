@@ -1,9 +1,9 @@
 {
   "dashboardTitle": "Inicio",
-  "dashboardMessage": "Visite todos nuestros sitios ubicados en todo nuestro territorio nacional, puede realizar un recorrido por todas nuestras provincias y conocer cada detalle y ubicación que corresponde con servicios ubicados especificamente para ayudarlo a tener una mejor estancia en nuestro país.",
+  "dashboardMessage": "¡Bienvenido a nuestra aplicación dedicada a brindarte información geolocalizada sobre las instituciones que ofrecen servicios médicos internacionales en Cuba! Descubre de manera rápida y fácil los centros de salud cercanos, con detalles actualizados sobre los servicios disponibles, para que encuentres la atención médica que necesitas, ¡dondequiera que estés en la hermosa isla de Cuba! Tu salud es nuestra prioridad.",
   "provinceVisit": "Escoja la Provincia a Visitar:",
   "info": "Información",
-  "infoMessage": "Aplicación diseñada para proporcionar información sobre los diferentes lugares que tiene Servicios Médicos Cubanos en el País.\n\nSi desea ponerse en contacto con el desarrollador por favor escriba al correo admin@smcsalud.cu",
+  "infoMessage": "Aplicación diseñada para proporcionar información sobre las instituciones cubanas que brindan servicios médicos internacionales a visitantes y residentes extranjeros. ",
   "version": "Versión: ",
   "location": "Ubicación",
   "address": "Dirección: ",

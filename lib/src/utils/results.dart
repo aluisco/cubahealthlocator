@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lugares/src/models/institucion.dart';
-import 'package:lugares/src/pages/institucion.dart';
-import 'package:lugares/src/utils/constants.dart';
+import 'package:cubahealthlocator/src/models/institucion.dart';
+import 'package:cubahealthlocator/src/pages/institucion.dart';
+import 'package:cubahealthlocator/src/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Results extends StatelessWidget {

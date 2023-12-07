@@ -3,11 +3,11 @@ import 'dart:io' show Platform;
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lugares/src/api/institucion_provider.dart';
-import 'package:lugares/src/utils/constants.dart';
-import 'package:lugares/src/models/institucion.dart';
-import 'package:lugares/src/utils/loading.dart';
-import 'package:lugares/src/utils/search.dart';
+import 'package:cubahealthlocator/src/api/institucion_provider.dart';
+import 'package:cubahealthlocator/src/utils/constants.dart';
+import 'package:cubahealthlocator/src/models/institucion.dart';
+import 'package:cubahealthlocator/src/utils/loading.dart';
+import 'package:cubahealthlocator/src/utils/search.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

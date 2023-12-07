@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:lugares/src/models/tipo.dart';
-import 'package:lugares/src/utils/constants.dart';
+import 'package:cubahealthlocator/src/models/tipo.dart';
+import 'package:cubahealthlocator/src/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Tipo>> getTipos() async {

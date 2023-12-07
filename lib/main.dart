@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:lugares/src/pages/dashboard.dart';
+import 'package:cubahealthlocator/src/pages/dashboard.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   Intl.defaultLocale = 'en';
-  runApp(const Lugares());
+  runApp(const CubaHealthLocator());
 }
 
-class Lugares extends StatelessWidget {
-  const Lugares({super.key});
+class CubaHealthLocator extends StatelessWidget {
+  const CubaHealthLocator({super.key});
 
   @override
   Widget build(BuildContext context) {

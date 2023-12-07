@@ -3,7 +3,7 @@
   "@dashboardTitle": {
     "description": "The title of the dasboard"
   },
-  "dashboardMessage": "Visit all our sites located throughout our national territory, you can take a tour of all our provinces and know every detail and location that corresponds to services located specifically to help you have a better stay in our country.",
+  "dashboardMessage": "Welcome to our application dedicated to providing you with geolocated information about institutions offering international medical services in Cuba! Quickly and easily discover nearby health centers with up-to-date details on available services, so you can find the medical care you need wherever you are on the beautiful island of Cuba! Your health is our priority.",
   "@dashboardMessage": {
     "description": "The principal Message when open the app"
   },
@@ -15,7 +15,7 @@
   "@info": {
     "description": "Info"
   },
-  "infoMessage": "Application designed to provide information on the different places that Cuban Medical Services have in the Country.\n\nIf you want to contact the developer please write to admin@smcsalud.cu",
+  "infoMessage": "Application designed to provide information about Cuban institutions that offer international medical services to visitors and foreign residents. ",
   "@infoMessage": {
     "description": "Message for info button"
   },
