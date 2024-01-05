@@ -29,16 +29,16 @@ class CubaHealthLocator extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(
-            fontSize: 16,
+        textTheme: TextTheme(
+          bodyLarge: GoogleFonts.aBeeZee(
+            fontSize: 22,
             color: Colors.white,
           ),
-          bodySmall: TextStyle(
+          bodySmall: const TextStyle(
             fontSize: 12,
             color: Colors.white,
           ),
-          bodyMedium: TextStyle(
+          bodyMedium: const TextStyle(
             fontSize: 14,
             color: Colors.white,
           ),

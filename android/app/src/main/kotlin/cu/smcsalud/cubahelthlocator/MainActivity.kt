@@ -1,4 +1,4 @@
-package com.example.smcsalud
+package cu.smcsalud.cubahealthlocator
 
 import io.flutter.embedding.android.FlutterActivity
 
